@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * 
  */
@@ -8,27 +10,34 @@
  */
 public class AddressBook {
 	
-	private BuddyInfo [] buddyInfos;
+	private HashMap <String, BuddyInfo> buddyInfos;
 
 	/**
 	 * 
 	 */
 	public AddressBook() {
-		// TODO Auto-generated constructor stub
+		buddyInfos = new HashMap<>();
 	}
 	
 	/**
 	 * This method adds a new buddy to the buddy info array
 	 */
-	public boolean addBuddy() {
-		return true;
+	public void addBuddy(BuddyInfo buddy) {
+		buddyInfos.put(buddy.getName(), buddy);
 	}
 	
 	/**
 	 * This method removes a new buddy to the buddy info array
 	 */
-	public boolean removeBuddy() {
-		return true;
+	public void removeBuddy(BuddyInfo buddy) {
+		buddyInfos.remove(buddy.getName(), buddy);
+	}
+	
+	/**
+	 * This method returns all addresses in the addressbook
+	 */
+	public HashMap<String, BuddyInfo> getBuddyInfos() {
+		return this.buddyInfos;
 	}
 	
 	/**
@@ -36,6 +45,12 @@ public class AddressBook {
 	 */
 	public static void main(String [] args) {
 		System.out.println("Addess Book");
+		
+		BuddyInfo newBudy = new BuddyInfo("Test name", "Test address", 999);
+		
+		AddressBook addresses = new AddressBook();
+		addresses.addBuddy(newBudy);
+		addresses.removeBuddy(newBudy);
 	}
 
 }
