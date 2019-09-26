@@ -1,4 +1,5 @@
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -10,35 +11,48 @@ import java.util.HashMap;
  */
 public class AddressBook {
 	
-	private HashMap <String, BuddyInfo> buddyInfos;
+	private List <BuddyInfo> buddyInfos;
 
 	/**
 	 * 
 	 */
 	public AddressBook() {
-		buddyInfos = new HashMap<>();
+		buddyInfos = new ArrayList<BuddyInfo>();
 	}
 	
 	/**
 	 * This method adds a new buddy to the buddy info array
 	 */
 	public void addBuddy(BuddyInfo buddy) {
-		buddyInfos.put(buddy.getName(), buddy);
+		buddyInfos.add(buddy);
 	}
 	
 	/**
 	 * This method removes a new buddy to the buddy info array
 	 */
-	public void removeBuddy(BuddyInfo buddy) {
-		buddyInfos.remove(buddy.getName(), buddy);
+	public BuddyInfo removeBuddy(int index) {
+		if(index >= 0 && index < this.buddyInfos.size()) {
+			return this.buddyInfos.remove(index);
+		}
+		return null;
 	}
 	
 	/**
-	 * This method returns all addresses in the addressbook
+	 * This method returns all addresses in the address book
 	 */
-	public HashMap<String, BuddyInfo> getBuddyInfos() {
+	public List<BuddyInfo> getBuddyInfos() {
 		return this.buddyInfos;
 	}
+	
+	/**
+	 * Give the size of the address book
+	 * @return An integer representing the number of elements in the address book
+	 */
+	public int size() {
+		return this.buddyInfos.size();	
+	}
+	
+	
 	
 	/**
 	 * Main method for AddressBook class
@@ -50,7 +64,7 @@ public class AddressBook {
 		
 		AddressBook addresses = new AddressBook();
 		addresses.addBuddy(newBudy);
-		addresses.removeBuddy(newBudy);
+		addresses.removeBuddy(0);
 	}
 
 }
